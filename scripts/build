@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+cd $(dirname $0)/..
+
+for i in `ls ./images/`; do
+    engine_dir=$(dirname $0)/../images/$i
+    echo "Go to dir ${engine_dir}"
+    pushd ${engine_dir}
+    docker build -t rancher/os-dind:$i .
+    popd
+done
