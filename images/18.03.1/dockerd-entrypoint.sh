@@ -39,4 +39,7 @@ if [ "$1" = 'dockerd' ]; then
     find /run /var/run -iname 'docker*.pid' -delete
 fi
 
+mkdir /sys/fs/cgroup/systemd
+mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
+
 exec "$@"
